@@ -199,8 +199,9 @@
 <p>如图，这样树就退化成了一条链，比较了5次，每次查询的时间复杂度就退化成了<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></p>
 <p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal">re</span><span class="mord mathnormal">a</span><span class="mord mathnormal">p</span></span></span></span> 这一类平衡树的目的就是尽可能减小树的高度，使时间复杂度维持在<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></p>
 <h2 id="概述"><a class="header" href="#概述">概述</a></h2>
-<p>在普及组中，我们还学过堆，二叉堆通过维护每一个结点的比子结点大或小 ,从而使堆顶的结点是堆中最小/最大的</p>
-<p>为了实现减小树一目的，Treap引入了堆的性质，它为每一个结点赋予了一个随机的权值，通过对于这个随机的权值维护堆的性质，使得树的形态具有随机性，从而减小树的高度</p>
+<p>在普及组中，我们还学过堆，二叉堆通过维护每一个结点的比子结点大/小 ,从而使堆顶的结点是堆中最小/最大的</p>
+<p>为了实现减小树的高度这一目的，Treap引入了堆的性质，它为每一个结点赋予了一个随机的权值。</p>
+<p>通过上面的例子，我们可以了解到，单调地插入结点会很大地增加树的高度，我们对于这个随机的权值维护堆的性质，使得结点的分布具有随机性，从而减小树的高度</p>
 <p>如图，即使是依次插入的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span></span></span></span>，仍然能将树的高度维持在一个较低的水平</p>
 <p><img src="OI/FHQ/Treap.png" alt="Treap" /></p>
 <p>其中，节点中的a-b，a代表的是节点的权值，b代表的是节点的随机权值</p>
