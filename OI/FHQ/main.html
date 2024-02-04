@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Dangerise&#x27;s Blog</title>
-        <meta name="robots" content="noindex">
+        <title>FHQ Treap - Dangerise&#x27;s Blog</title>
 
 
         <!-- Custom HTML head -->
@@ -13,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -36,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -89,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="home_page.html">首页</a></li><li class="chapter-item expanded affix "><li class="part-title">OI</li><li class="chapter-item expanded "><a href="OI/FHQ/main.html"><strong aria-hidden="true">1.</strong> FHQ Treap</a></li><li class="chapter-item expanded affix "><li class="part-title">文章</li><li class="chapter-item expanded "><a href="articles/rust-aur/index.html"><strong aria-hidden="true">2.</strong> Rust AUR打包教程</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../home_page.html">首页</a></li><li class="chapter-item expanded affix "><li class="part-title">OI</li><li class="chapter-item expanded "><a href="../../OI/FHQ/main.html" class="active"><strong aria-hidden="true">1.</strong> FHQ Treap</a></li><li class="chapter-item expanded affix "><li class="part-title">文章</li><li class="chapter-item expanded "><a href="../../articles/rust-aur/index.html"><strong aria-hidden="true">2.</strong> Rust AUR打包教程</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -145,11 +144,14 @@
                     <h1 class="menu-title">Dangerise&#x27;s Blog</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="ttps://github.com/Dangerised/blog" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Dangerised/blog/blob/master/src/OI/FHQ/main.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
                     </div>
@@ -178,31 +180,23 @@
                 <div id="content" class="content">
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="欢迎来到我的博客"><a class="header" href="#欢迎来到我的博客">欢迎来到我的博客</a></h1>
-<p>这个网站是Dangerise的个人博客</p>
-<ul>
-<li><a href="https://github.com/Dangerised">Github</a> (由于删除账号后的用户名会被占用一段时间，所以这个账户目前叫Dangerised，之后会改回Dangerise)</li>
-<li><a href="https://www.luogu.com.cn/user/371409">洛谷账号</a></li>
-<li><a href="https://www.zhihu.com/people/cxkzy-92">知乎账号</a></li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="一文搞懂-fhq-treap"><a class="header" href="#一文搞懂-fhq-treap">一文搞懂 FHQ Treap</a></h1>
 <p>前置知识：二叉搜索树，堆</p>
 <h2 id="引入"><a class="header" href="#引入">引入</a></h2>
 <p>我们在普及组都学过BST（二叉搜索树），先简单温习一下BST的定义</p>
 <p>二叉搜索树的每个结点，都比它的左结点的权值大，都比它的右结点的权值小</p>
 <p>通过维护这种性质，我们最多从树的根查找到树的底部，就能插入或查询到我们需要的值，即查询的时间复杂度为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">h</span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span>为树的高度，所以在理想情况下，即树的高度最小的时候，复杂度为<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></p>
-<p><img src="OI/FHQ/BST-query.png" alt="查询" /></p>
+<p><img src="BST-query.png" alt="查询" /></p>
 <p>如上，这次查询比较了3次</p>
 <p>但是，这种朴素的数据结构存在缺陷，下面我们来对一个BST插入一串单调的数列：1,2,3,4,5</p>
-<p><img src="OI/FHQ/chain.png" alt="链" /></p>
+<p><img src="chain.png" alt="链" /></p>
 <p>如图，这样树就退化成了一条链，比较了5次，每次查询的时间复杂度就退化成了<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></p>
 <p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal">re</span><span class="mord mathnormal">a</span><span class="mord mathnormal">p</span></span></span></span> 这一类平衡树的目的就是尽可能减小树的高度，使时间复杂度维持在<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></p>
 <h2 id="概述"><a class="header" href="#概述">概述</a></h2>
 <p>在普及组中，我们还学过堆，二叉堆通过维护每一个结点的比子结点大或小 ,从而使堆顶的结点是堆中最小/最大的</p>
 <p>为了实现减小树一目的，Treap引入了堆的性质，它为每一个结点赋予了一个随机的权值，通过对于这个随机的权值维护堆的性质，使得树的形态具有随机性，从而减小树的高度</p>
 <p>如图，即使是依次插入的<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span></span></span></span>，仍然能将树的高度维持在一个较低的水平</p>
-<p><img src="OI/FHQ/Treap.png" alt="Treap" /></p>
+<p><img src="Treap.png" alt="Treap" /></p>
 <p>其中，节点中的a-b，a代表的是节点的权值，b代表的是节点的随机权值</p>
 <p>至于为什么，我问过机房的人，好像都不太懂...希望有大佬能解答</p>
 <h2 id="分裂与合并"><a class="header" href="#分裂与合并">分裂与合并</a></h2>
@@ -217,7 +211,7 @@
 <p>按照排名来分裂，A的所有节点的数量不超过某个值，然后剩下的点放在B中</p>
 </li>
 </ol>
-<p><img src="OI/FHQ/Treap-split.png" alt="" /></p>
+<p><img src="Treap-split.png" alt="" /></p>
 <h5 id="以下我都会使用按照值分裂来实现"><a class="header" href="#以下我都会使用按照值分裂来实现">以下我都会使用按照值分裂来实现</a></h5>
 <p>合并，就是将分裂出来的树再合并在一起，但是在合并的时候维护堆得性质，假设我们要维护的是大根堆，两棵树是A和B，那么就将A，B从上到下合并在一起，并且随机权值大的结点一定要在上面</p>
 <p><strong>注意，合并的两个树<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord cjk_fallback">，</span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span></strong></p>
@@ -493,112 +487,18 @@ int main() {
   return 0;
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="前言"><a class="header" href="#前言">前言</a></h1>
-<p>众所周知，我们Arch系用户快乐感的来源除了neofetch，还有一个米奇妙妙屋——AUR</p>
-<p>AUR丰富的软件生态与AUR helper带来的一键安装方式，使我最终决定使用Arch系的发行版</p>
-<p>当你尝试为linux构建了一个软件之后，第一个想的肯定是将它上传到AUR，虽然打包到AUR有些繁琐，但是Rust强大的工具链使之轻而易举。（R门！）</p>
-<p>笔者也是刚刚了解如何上传到AUR，如有缺漏，错误，烦请指出</p>
-<p>以下将指导你将Rust包发布到AUR上</p>
-<h1 id="准备工作"><a class="header" href="#准备工作">准备工作</a></h1>
-<h2 id="注册账号"><a class="header" href="#注册账号">注册账号</a></h2>
-<p>显然，你首先得有一个AUR账号 打开<a href="https://aur.archlinux.org/">AUR的网站</a>，注册一个账号</p>
-<p><img src="articles/rust-aur/AUR_home_page.png" alt="AUR 首页" /></p>
-<p>创建账号的时候，你只需要填用户名和邮箱地址，然后在最底下的验证填上那些命令的输出，最后点击创建即可</p>
-<p><img src="articles/rust-aur/AUR_reg_page.png" alt="AUR 注册帐号" /></p>
-<p>然后你的邮箱会收到一封来自AUR的邮件，你可以通过这个邮件为你的账号添加密码</p>
-<p>账号创建成功后，通过这个账号登录到AUR</p>
-<h2 id="ssh公钥"><a class="header" href="#ssh公钥">SSH公钥</a></h2>
-<p>我们注意到，在创建账号的页面，有SSH公钥一栏，为了上传软件包，我们需要一个SSH公钥</p>
-<p>我们先检查本机是否存在SSH公钥</p>
-<pre><code>cd ~/.ssh
-ls
-</code></pre>
-<p>我们先进入到这个目录，并查看是否存在id_rsa和id_rsa.pub文件，如果已经存在，就不需要创建</p>
-<p>如果不存在，那便需要手动创建SSH key</p>
-<pre><code>ssh-keygen -t rsa -C &quot;xxx@xxx.com&quot;
-</code></pre>
-<p>其中-C参数的内容是注释，建议填写自己的邮箱</p>
-<p>创建过程中会询问是否创建口令，视自身需求是否创建</p>
-<pre><code>cd ~/.ssh
-cat id_rsa.pub
-</code></pre>
-<p>创建完毕后，进入到ssh的目录，查看id_rsa.pub中的ssh公钥，并复制打印的内容</p>
-<p><img src="articles/rust-aur/cat_ssh_pub_key.png" alt="" /></p>
-<p>进入AUR的账号设置，将这串内容填入SSH公钥一栏</p>
-<p><img src="articles/rust-aur/add_ssh_key_to_AUR.png" alt="" /></p>
-<p>将SSH公钥粘贴进去，并在底下输入当前密码，保存修改</p>
-<h1 id="cargo-aur"><a class="header" href="#cargo-aur">cargo-aur</a></h1>
-<p>AUR中 PKGBUILD 和 .SRCINFO 两个文件分别包含了包的构建信息和包的元属性，我们将使用cargo-aur来生成这两个文件</p>
-<p>cargo-aur是一个Rust项目的打包工具，它会自动将你的Rust项目打包成AUR的格式，并且根据Cargo.toml的内容，生成相关文件，所以我们不需要手动编写相关文件</p>
-<p>通过cargo安装</p>
-<pre><code>cargo install cargo-aur
-</code></pre>
-<p>通过AUR安装</p>
-<pre><code>yay -S cargo-aur-bin
-</code></pre>
-<p>安装之后，你就可以使用cargo aur这个命令</p>
-<h1 id="打包"><a class="header" href="#打包">打包</a></h1>
-<p>首先你得有一个你将要打包的存储在git仓库中的Rust项目，并且已经远程连接到某个代码托管网站，最好清空了commit</p>
-<p>由于cargo aur会根据你的Cargo.toml文件生成AUR的相关文件，所以你需要将Cargo.toml的相关属性填写完整，不然打包的时候会报错，缺少字段</p>
-<p>你的项目可能依赖了一些arch的包，可以在Cargo.toml中写明</p>
-<pre><code>[package.metadata.aur]
-depends = [&quot;nachos&quot;, &quot;pizza&quot;] # 必要依赖
-optdepends = [&quot;sushi&quot;, &quot;ramen&quot;] # 可选依赖
-</code></pre>
-<p>万事具备，进入到你要打包的crate的根目录，现在开始打包</p>
-<pre><code>cargo aur
-</code></pre>
-<p>完成之后，在target/cargo-aur目录下有两个文件，一个名为PKGBUILD的文件，一个名为
-<code>&lt;包名&gt;-&lt;版本号&gt;-&lt;目标架构&gt;.tar.gz</code>
-的tar包</p>
-<p>有关这个包的元数据保存在一个名为 .SRCINFO 的文件中，这个文件需要我们自己用命令生成</p>
-<p>进入到target/cargo-aur目录运行以下命令，生成 .SRCINFO文件</p>
-<pre><code>makepkg --printsrcinfo &gt; .SRCINFO
-</code></pre>
-<p>由于这个文件是默认隐藏的，所以你直接用ls命令是不能查看的</p>
-<p>为了验证你的包能不能顺利安装，你可以直接运行</p>
-<pre><code>makepkg
-</code></pre>
-<p>在你的系统上安装这个包</p>
-<p>如果一切顺利，你可以看到以下信息</p>
-<pre><code>==&gt; Finished making: &lt;包名&gt; &lt;版本&gt; (&lt;时间&gt;)
-</code></pre>
-<p>并且 pkg/&lt;包名&gt; 这个目录会被创建，你可以在里面找到这个包的可执行文件，你可以尝试运行这个可执行文件看看能不能正常工作</p>
-<h1 id="上传"><a class="header" href="#上传">上传</a></h1>
-<p>AUR中不会存储完整的包，只会存储这个包的信息，当你从AUR安装这个包的时候，你会先下载这个包的有关信息，然后根据这些信息再去其他地方下载完整的包</p>
-<p>PKGBUILD 和 .SRCINFO 就保存着这个包的相关信息，tar包则是完整的包</p>
-<p>所以你需要将 PKGBUILD 和 .SRCINFO 上传到AUR，然后tar包找一个地方存储</p>
-<p>cargo-aur要求你将tar包发布到你所远程连接的仓库的发行版中，为了方便国内用户，我上传到了gitee</p>
-<p><img src="articles/rust-aur/gitee_release.png" alt="" /></p>
-<p><em>注意，这个仓库必须是public的，并且版本号一定要和Cargo.toml中的版本号一致</em></p>
-<p>当用户从AUR安装时，便会自动从gitee下载最新的发行版并构建</p>
-<p>接下来你要将PKGBUILD上传到AUR</p>
-<p>请注意，cargo-aur生成的AUR包的名字叫做&lt;Rust包名&gt;-bin，表明这是某个包的二进制版本，而不是从源码构建的版本</p>
-<p>那么你要在AUR上创建一个对应的包</p>
-<pre><code>git clone ssh://aur@aur.archlinux.org/包名-bin.git
-</code></pre>
-<p>通过这个命令，直接clone对应的AUR包，如果这个包不存在，AUR会你自动创建一个空的包</p>
-<p>（由于是通过ssh下载，如果你在ssh密钥中创建了口令，那么它就会询问这个口令）</p>
-<p>现在将上面生成的 PKGBUILD 和 .SRCINFO 文件复制到clone下来的仓库中</p>
-<p>通过以下git命令上传</p>
-<p>另外，似乎AUR只允许主分支叫 master , 而不能叫其他名字， 如果你的主分支不叫master， 先将主分支重命名为master</p>
-<pre><code>git add PKGBUILD .SRCINFO
-git commit -m &quot;Released version: &lt;version_name&gt;&quot;
-git push origin master
-</code></pre>
-<p>如果一切顺利，你就可以在AUR上找到你的包了</p>
-<p><img src="articles/rust-aur/AUR_uploaded_package.png" alt="" /></p>
-<p>然后你就可以尝试使用AUR helper安装你的包了</p>
-<p>包上传之后可能不会立即生效</p>
-<p>附一张成功的截图</p>
-<p><img src="articles/rust-aur/yay_succeed.png" alt="" /></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../home_page.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
+                            <a rel="next prefetch" href="../../articles/rust-aur/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -606,7 +506,13 @@ git push origin master
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../home_page.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
+                    <a rel="next prefetch" href="../../articles/rust-aur/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
@@ -619,21 +525,16 @@ git push origin master
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
 
         <!-- Custom JS scripts -->
 
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
 
     </div>
     </body>
