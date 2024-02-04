@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="home_page.html">首页</a></li><li class="chapter-item expanded affix "><li class="part-title">OI</li><li class="chapter-item expanded "><a href="OI/FHQ/main.html"><strong aria-hidden="true">1.</strong> FHQ Treap</a></li><li class="chapter-item expanded affix "><li class="part-title">文章</li><li class="chapter-item expanded "><a href="articles/rust-aur/index.html"><strong aria-hidden="true">2.</strong> Rust AUR打包教程</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="home-page.html">首页</a></li><li class="chapter-item expanded affix "><li class="part-title">OI</li><li class="chapter-item expanded "><a href="OI/FHQ/main.html"><strong aria-hidden="true">1.</strong> FHQ Treap</a></li><li class="chapter-item expanded affix "><li class="part-title">文章</li><li class="chapter-item expanded "><a href="articles/rust-aur/index.html"><strong aria-hidden="true">2.</strong> Rust AUR打包教程</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -148,7 +148,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="ttps://github.com/Dangerised/blog" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/Dangerised/blog" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
 
@@ -187,7 +187,15 @@
 <li><a href="https://www.luogu.com.cn/user/371409">洛谷账号</a></li>
 <li><a href="https://www.zhihu.com/people/cxkzy-92">知乎账号</a></li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script
+  src="https://utteranc.es/client.js"
+  repo="Dangerised/blog-issues"
+  issue-term="home-page"
+  theme="github-light"
+  crossorigin="anonymous"
+  async
+>
+</script><div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="一文搞懂-fhq-treap"><a class="header" href="#一文搞懂-fhq-treap">一文搞懂 FHQ Treap</a></h1>
 <p>前置知识：二叉搜索树，堆</p>
 <h2 id="引入"><a class="header" href="#引入">引入</a></h2>
@@ -631,6 +639,10 @@ git push origin master
         <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="assets/mermaid.min.js"></script>
+        <script src="assets/mermaid-init.js"></script>
+        <script src="assets/elasticlunr.js"></script>
+        <script src="assets/fzf.umd.js"></script>
 
         <script>
         window.addEventListener('load', function() {
