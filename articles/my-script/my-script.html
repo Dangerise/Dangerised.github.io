@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Rust AUR打包教程 - Dangerise&#x27;s Blog</title>
+        <title>脚本语言 - Dangerise&#x27;s Blog</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../home-page.html">首页</a></li><li class="chapter-item expanded affix "><li class="part-title">OI</li><li class="chapter-item expanded "><a href="../../OI/FHQ/main.html"><strong aria-hidden="true">1.</strong> FHQ Treap</a></li><li class="chapter-item expanded affix "><li class="part-title">文章</li><li class="chapter-item expanded "><a href="../../articles/rust-aur/index.html" class="active"><strong aria-hidden="true">2.</strong> Rust AUR打包教程</a></li><li class="chapter-item expanded "><a href="../../articles/my-script/my-script.html"><strong aria-hidden="true">3.</strong> 脚本语言</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../home-page.html">首页</a></li><li class="chapter-item expanded affix "><li class="part-title">OI</li><li class="chapter-item expanded "><a href="../../OI/FHQ/main.html"><strong aria-hidden="true">1.</strong> FHQ Treap</a></li><li class="chapter-item expanded affix "><li class="part-title">文章</li><li class="chapter-item expanded "><a href="../../articles/rust-aur/index.html"><strong aria-hidden="true">2.</strong> Rust AUR打包教程</a></li><li class="chapter-item expanded "><a href="../../articles/my-script/my-script.html" class="active"><strong aria-hidden="true">3.</strong> 脚本语言</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -150,7 +150,7 @@
                         <a href="https://github.com/Dangerised/blog" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/Dangerised/blog/blob/master/src/articles/rust-aur/index.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/Dangerised/blog/blob/master/src/articles/my-script/my-script.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -179,125 +179,206 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="前言"><a class="header" href="#前言">前言</a></h1>
-<p>众所周知，我们Arch系用户快乐感的来源除了neofetch，还有一个米奇妙妙屋——AUR</p>
-<p>AUR丰富的软件生态与AUR helper带来的一键安装方式，使我最终决定使用Arch系的发行版</p>
-<p>当你尝试为linux构建了一个软件之后，第一个想的肯定是将它上传到AUR，虽然打包到AUR有些繁琐，但是Rust强大的工具链使之轻而易举。（R门！）</p>
-<p>笔者也是刚刚了解如何上传到AUR，如有缺漏，错误，烦请指出</p>
-<p>以下将指导你将Rust包发布到AUR上</p>
-<h1 id="准备工作"><a class="header" href="#准备工作">准备工作</a></h1>
-<h2 id="注册账号"><a class="header" href="#注册账号">注册账号</a></h2>
-<p>显然，你首先得有一个AUR账号 打开<a href="https://aur.archlinux.org/">AUR的网站</a>，注册一个账号</p>
-<p><img src="AUR_home_page.png" alt="AUR 首页" /></p>
-<p>创建账号的时候，你只需要填用户名和邮箱地址，然后在最底下的验证填上那些命令的输出，最后点击创建即可</p>
-<p><img src="AUR_reg_page.png" alt="AUR 注册帐号" /></p>
-<p>然后你的邮箱会收到一封来自AUR的邮件，你可以通过这个邮件为你的账号添加密码</p>
-<p>账号创建成功后，通过这个账号登录到AUR</p>
-<h2 id="ssh公钥"><a class="header" href="#ssh公钥">SSH公钥</a></h2>
-<p>我们注意到，在创建账号的页面，有SSH公钥一栏，为了上传软件包，我们需要一个SSH公钥</p>
-<p>我们先检查本机是否存在SSH公钥</p>
-<pre><code>cd ~/.ssh
-ls
+                        <h1 id="我所设计的脚本语言"><a class="header" href="#我所设计的脚本语言">我所设计的脚本语言</a></h1>
+<h2 id="目标-高性能-小巧-现代"><a class="header" href="#目标-高性能-小巧-现代">目标 高性能 小巧 现代</a></h2>
+<h2 id="阐述"><a class="header" href="#阐述">阐述</a></h2>
+<h3 id="静态强类型"><a class="header" href="#静态强类型">静态强类型</a></h3>
+<p>此语言强类型，静态，对于需要动态类型的变量，采用 any 类型</p>
+<p>与动态类型语言相比，可以有效在编译期拦截类型错误，利于开发大型项目，更加有利于 jit，可以编译到 wasm</p>
+<h3 id="无-gc"><a class="header" href="#无-gc">无 GC</a></h3>
+<p>（其实就是不会写）</p>
+<p>在运行时检查引用有效性，具体实现为对于会被引用的变量，将其地址与 version 存入 arena，在解引用的时候先在 arena 中查询是否存在这个变量</p>
+<h3 id="结构体"><a class="header" href="#结构体">结构体</a></h3>
+<p>由于静态强类型的存在，使结构体成为可能，用来替代 table,object 之类的东西</p>
+<h3 id="多种编译方式"><a class="header" href="#多种编译方式">多种编译方式</a></h3>
+<ul>
+<li>编译到 rust</li>
+<li>编译到 wasm</li>
+<li>编译到 js</li>
+<li>编译到字节码，然后使用内置引擎解释执行</li>
+</ul>
+<h3 id="类型"><a class="header" href="#类型">类型</a></h3>
+<h4 id="基本数据类型如下"><a class="header" href="#基本数据类型如下">基本数据类型如下</a></h4>
+<div class="table-wrapper"><table><thead><tr><th>关键字</th><th>类型</th></tr></thead><tbody>
+<tr><td><strong>int</strong></td><td>整数</td></tr>
+<tr><td><strong>bool</strong></td><td>布尔</td></tr>
+<tr><td><strong>float</strong></td><td>浮点数</td></tr>
+<tr><td><strong>string</strong></td><td>字符串</td></tr>
+<tr><td><strong>nil</strong></td><td>空</td></tr>
+<tr><td><strong>any</strong></td><td>任意类型</td></tr>
+</tbody></table>
+</div>
+<h4 id="其他内置类型"><a class="header" href="#其他内置类型">其他内置类型</a></h4>
+<div class="table-wrapper"><table><thead><tr><th>语法</th><th>类型</th></tr></thead><tbody>
+<tr><td><strong>[type]</strong></td><td>数组</td></tr>
+<tr><td><strong>table&lt;type?,type?&gt;</strong></td><td>表</td></tr>
+<tr><td><strong>fn (arg...)-&gt;ret</strong></td><td>函数</td></tr>
+</tbody></table>
+</div>
+<p>table 的泛型参数如果被省略，为 any</p>
+<h4 id="复合类型"><a class="header" href="#复合类型">复合类型</a></h4>
+<div class="table-wrapper"><table><thead><tr><th>语法</th><th>类型</th></tr></thead><tbody>
+<tr><td>A | B</td><td>可能为 A 也可能为 B 的类型</td></tr>
+<tr><td>T?</td><td>可能为 T 也可能为 nil 的类型，T | nil 的语法糖</td></tr>
+</tbody></table>
+</div>
+<h4 id="其他"><a class="header" href="#其他">其他</a></h4>
+<p>此外，所有类型均可以被引用</p>
+<h2 id="语法"><a class="header" href="#语法">语法</a></h2>
+<p>大致与 rust 相同，但也有所不同，比如没有分号</p>
+<h3 id="定义变量"><a class="header" href="#定义变量">定义变量</a></h3>
+<pre><code class="language-ts">let a = 1
+let a = 1, b = 2
+let a, b = 1, 2
+//支持重影，类型推导
 </code></pre>
-<p>我们先进入到这个目录，并查看是否存在id_rsa和id_rsa.pub文件，如果已经存在，就不需要创建</p>
-<p>如果不存在，那便需要手动创建SSH key</p>
-<pre><code>ssh-keygen -t rsa -C &quot;xxx@xxx.com&quot;
-</code></pre>
-<p>其中-C参数的内容是注释，建议填写自己的邮箱</p>
-<p>创建过程中会询问是否创建口令，视自身需求是否创建</p>
-<pre><code>cd ~/.ssh
-cat id_rsa.pub
-</code></pre>
-<p>创建完毕后，进入到ssh的目录，查看id_rsa.pub中的ssh公钥，并复制打印的内容</p>
-<p><img src="cat_ssh_pub_key.png" alt="" /></p>
-<p>进入AUR的账号设置，将这串内容填入SSH公钥一栏</p>
-<p><img src="add_ssh_key_to_AUR.png" alt="" /></p>
-<p>将SSH公钥粘贴进去，并在底下输入当前密码，保存修改</p>
-<h1 id="cargo-aur"><a class="header" href="#cargo-aur">cargo-aur</a></h1>
-<p>AUR中 PKGBUILD 和 .SRCINFO 两个文件分别包含了包的构建信息和包的元属性，我们将使用cargo-aur来生成这两个文件</p>
-<p>cargo-aur是一个Rust项目的打包工具，它会自动将你的Rust项目打包成AUR的格式，并且根据Cargo.toml的内容，生成相关文件，所以我们不需要手动编写相关文件</p>
-<p>通过cargo安装</p>
-<pre><code>cargo install cargo-aur
-</code></pre>
-<p>通过AUR安装</p>
-<pre><code>yay -S cargo-aur-bin
-</code></pre>
-<p>安装之后，你就可以使用cargo aur这个命令</p>
-<h1 id="打包"><a class="header" href="#打包">打包</a></h1>
-<p>首先你得有一个你将要打包的存储在git仓库中的Rust项目，并且已经远程连接到某个代码托管网站，最好清空了commit</p>
-<p>由于cargo aur会根据你的Cargo.toml文件生成AUR的相关文件，所以你需要将Cargo.toml的相关属性填写完整，不然打包的时候会报错，缺少字段</p>
-<p>你的项目可能依赖了一些arch的包，可以在Cargo.toml中写明</p>
-<pre><code>[package.metadata.aur]
-depends = [&quot;nachos&quot;, &quot;pizza&quot;] # 必要依赖
-optdepends = [&quot;sushi&quot;, &quot;ramen&quot;] # 可选依赖
-</code></pre>
-<p>万事具备，进入到你要打包的crate的根目录，现在开始打包</p>
-<pre><code>cargo aur
-</code></pre>
-<p>完成之后，在target/cargo-aur目录下有两个文件，一个名为PKGBUILD的文件，一个名为
-<code>&lt;包名&gt;-&lt;版本号&gt;-&lt;目标架构&gt;.tar.gz</code>
-的tar包</p>
-<p>有关这个包的元数据保存在一个名为 .SRCINFO 的文件中，这个文件需要我们自己用命令生成</p>
-<p>进入到target/cargo-aur目录运行以下命令，生成 .SRCINFO文件</p>
-<pre><code>makepkg --printsrcinfo &gt; .SRCINFO
-</code></pre>
-<p>由于这个文件是默认隐藏的，所以你直接用ls命令是不能查看的</p>
-<p>为了验证你的包能不能顺利安装，你可以直接运行</p>
-<pre><code>makepkg
-</code></pre>
-<p>在你的系统上安装这个包</p>
-<p>如果一切顺利，你可以看到以下信息</p>
-<pre><code>==&gt; Finished making: &lt;包名&gt; &lt;版本&gt; (&lt;时间&gt;)
-</code></pre>
-<p>并且 pkg/&lt;包名&gt; 这个目录会被创建，你可以在里面找到这个包的可执行文件，你可以尝试运行这个可执行文件看看能不能正常工作</p>
-<h1 id="上传"><a class="header" href="#上传">上传</a></h1>
-<p>AUR中不会存储完整的包，只会存储这个包的信息，当你从AUR安装这个包的时候，你会先下载这个包的有关信息，然后根据这些信息再去其他地方下载完整的包</p>
-<p>PKGBUILD 和 .SRCINFO 就保存着这个包的相关信息，tar包则是完整的包</p>
-<p>所以你需要将 PKGBUILD 和 .SRCINFO 上传到AUR，然后tar包找一个地方存储</p>
-<p>cargo-aur要求你将tar包发布到你所远程连接的仓库的发行版中，为了方便国内用户，我上传到了gitee</p>
-<p><img src="gitee_release.png" alt="" /></p>
-<p><em>注意，这个仓库必须是public的，并且版本号一定要和Cargo.toml中的版本号一致</em></p>
-<p>当用户从AUR安装时，便会自动从gitee下载最新的发行版并构建</p>
-<p>接下来你要将PKGBUILD上传到AUR</p>
-<p>请注意，cargo-aur生成的AUR包的名字叫做&lt;Rust包名&gt;-bin，表明这是某个包的二进制版本，而不是从源码构建的版本</p>
-<p>那么你要在AUR上创建一个对应的包</p>
-<pre><code>git clone ssh://aur@aur.archlinux.org/包名-bin.git
-</code></pre>
-<p>通过这个命令，直接clone对应的AUR包，如果这个包不存在，AUR会你自动创建一个空的包</p>
-<p>（由于是通过ssh下载，如果你在ssh密钥中创建了口令，那么它就会询问这个口令）</p>
-<p>现在将上面生成的 PKGBUILD 和 .SRCINFO 文件复制到clone下来的仓库中</p>
-<p>通过以下git命令上传</p>
-<p>另外，似乎AUR只允许主分支叫 master , 而不能叫其他名字， 如果你的主分支不叫master， 先将主分支重命名为master</p>
-<pre><code>git add PKGBUILD .SRCINFO
-git commit -m &quot;Released version: &lt;version_name&gt;&quot;
-git push origin master
-</code></pre>
-<p>如果一切顺利，你就可以在AUR上找到你的包了</p>
-<p><img src="AUR_uploaded_package.png" alt="" /></p>
-<p>然后你就可以尝试使用AUR helper安装你的包了</p>
-<p>包上传之后可能不会立即生效</p>
-<p>附一张成功的截图</p>
-<p><img src="yay_succeed.png" alt="" /></p>
-<script
-  src="https://utteranc.es/client.js"
-  repo="Dangerised/blog-issues"
-  issue-term="rust-aur"
-  theme="github-light"
-  crossorigin="anonymous"
-  async
->
-</script>
+<h3 id="各种值"><a class="header" href="#各种值">各种值</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>const a : string =  &quot;Hello&quot;
+
+const t : table = {
+    &quot;a&quot; : 1,
+    2 : 3,
+    [1,2] : &quot;b&quot;
+}
+// 理论上table的key能是任何能被hash的值
+
+let arr : [int] = [1,2]
+
+let tuple : (int, float) = (1, 2.)
+// 有小数点就算浮点数
+
+let big_int = 1000_1000
+// 数字中间可以添加下划线
+<span class="boring">}</span></code></pre></pre>
+<h3 id="都是表达式"><a class="header" href="#都是表达式">都是表达式</a></h3>
+<p>与 Rust 类似，任何语句和<strong>block</strong>都是表达式</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a = { 1 + 2 }
+<span class="boring">}</span></code></pre></pre>
+<p>替代三元运算符</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let res = if cond {
+    1
+} else {
+    2
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="if-语句"><a class="header" href="#if-语句">if 语句</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>if cond {
+
+} else if cond {
+
+} else {
+
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="for-loop"><a class="header" href="#for-loop">for loop</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>for item in &lt;iter&gt; {}
+<span class="boring">}</span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// 0..100 可以创造一个迭代器 类似于python的 range(0,100)
+for item in 0..100 {
+
+}
+
+// 表示可以取到100
+for item in 0..=100{
+
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="while-loop"><a class="header" href="#while-loop">while loop</a></h3>
+<p>不必多说</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>while cond {}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="loop"><a class="header" href="#loop">loop</a></h3>
+<p>与 rust 类似，采用 loop 代替 while true</p>
+<p>以下两者等价</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>loop {}
+<span class="boring">}</span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>while true {}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="函数"><a class="header" href="#函数">函数</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn sum(a : int , b : int) -&gt; int {
+    a + b
+}
+
+fn sum(a : int , b : int) -&gt; int {
+    return a + b
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="匿名函数"><a class="header" href="#匿名函数">匿名函数</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>| x:int,y:int | -&gt; int {
+    x + y
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="结构体-1"><a class="header" href="#结构体-1">结构体</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Vector {
+    x : float,
+    y : float,
+    sum : fn(&amp;self)-&gt;float,
+    // 方法也可以放在结构体内部，使得可以在运行时改变
+}
+
+// 定义方法，但是方法是不变的
+impl Vector {
+    fn new(x:float,y:float)-&gt;Vector{
+        Vector {
+            x, y,
+            sum:fn (&amp;self)-&gt;float{
+                self.x+self.y
+            }
+        }
+    }
+}
+
+// meta关键字也是用来定义方法的，但是类似于lua的元表，用来定义特殊的东西
+meta Vector {
+    fn add(self,other:Self)-&gt;Self{
+        Vector {
+            x:self.x+other.x,
+            y:self.y+other.y
+        }
+    }
+}
+
+let v = Vector::new(1. , 2.)
+
+let sum = v.sum()
+
+let other = Vector::new(2. , 3.)
+
+let e = v + other
+<span class="boring">}</span></code></pre></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../OI/FHQ/main.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../articles/rust-aur/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../articles/my-script/my-script.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -305,13 +386,10 @@ git push origin master
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../OI/FHQ/main.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../articles/rust-aur/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../articles/my-script/my-script.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
